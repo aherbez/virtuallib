@@ -1,5 +1,5 @@
 {
-  "name": "The Virtual Library",
+  "name": "VirtualLibrary",
   "version": "1.0.0",
   "description": "3d viewer for archive.org books",
   "main": "server.js",

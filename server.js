@@ -21,36 +21,8 @@ app.get('/', (req, res) => {
 
 
 app.get('/page/:book/:pagenum', (req, res) => {
-
-	//http://www.archive.org/stream/aliceinwonderlan00carriala#page/23
-	// res.sendFile(__dirname + '/images/testPage.jpg');
-	
-	// console.log(req.params);
 	let page = req.params.pagenum || '0';
 	let bookId = req.params.book || 'aliceinwonderlan00carriala';
-
-	/*
-	http://archive.org/download/books/OL7170815M/page/n0_medium.jpg	
-	/books/OL7170815M
-
-http://openlibrary.org/api/books?bibkeys=OLID:OL7170815M&jscmd=viewapi&format=json
-{
-	"OLID:OL7170815M": {
-		"bib_key": "OLID:OL7170815M", 
-		"preview": "full", 
-		"thumbnail_url": "https://covers.openlibrary.org/b/id/7000537-S.jpg", 
-		"preview_url": "https://archive.org/details/wonderfulwizardo00baumiala", 
-		"info_url": "http://openlibrary.org/books/OL7170815M/The_Wonderful_Wizard_of_Oz"
-	}
-}
-
-
-
-http://openlibrary.org/api/books?bibkeys=OLID:OL7170815M&jscmd=data&format=json
-
-	http://openlibrary.org/api/books?bibkeys=OLID:OL7170815M&jscmd=viewapi&format=json
-	 */
-
 
 	let url = `http://archive.org/download/${bookId}/page/n${page}_medium.jpg`;
 	request.get(url).pipe(res);
@@ -76,8 +48,6 @@ app.get('/img', (req, res) => {
 	res.type("png");
 	stream.pipe(res);
 
-	// res.write(canvas.jpegStream());
-	// console.log('<img src="' + canvas.toDataURL() + '"/>');	
 });
 
 app.get('/bookinfo/:olid', (req, res) => {
@@ -123,13 +93,7 @@ app.get('/bookinfo/:olid', (req, res) => {
 				res.send(JSON.stringify(outObj));
 			})
 		});
-
-		// request.get(dataUrl).pipe(res);
 	}
-});
-
-app.post('/quotes', (req, res) => {
-	console.log(req.body);
 });
 
 app.listen(port, function() {
