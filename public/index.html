@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>Book Exterior</title>
+
+        <style type="text/css">
+        body {
+        	margin: 0px;
+        }
+        </style>
+
+    </head>
+
+    <body>
+    <!--
+        <canvas id="testCanvas" width="512" height="512"></canvas>
+    -->
+        <script id="pageFragSrc" type="x-shader/x-fragment"> 
+        uniform sampler2D oddPageTex;
+        uniform sampler2D evenPageTex;
+
+        varying vec2 vUv;
+
+        void main() {
+
+            if (gl_FrontFacing) {
+                // even
+                gl_FragColor = texture2D(evenPageTex, 
+                    vec2(1.-vUv[0], vUv[1]));
+            } else {
+                // odd
+                gl_FragColor = texture2D(oddPageTex, vUv);
+            }
+        }
+        </script>
+
+        <script id="pageVertSrc" type="x-shader/x-fragment">
+        varying vec2 vUv;
+        void main() {
+            vUv = uv;
+            gl_Position = projectionMatrix *
+                modelViewMatrix *
+                vec4(position, 1.0);
+        }
+        </script>
+
+    	<script src="js/libs/three.min.js"></script>
+        <script src="js/bookUtils.js"></script>
+        <script src="js/page.js"></script>
+        <script src="js/bookPages.js"></script>
+        <script src="js/book.js"></script>
+    	<script src="js/main.js"></script>   
+    </body>
+    
+</html>

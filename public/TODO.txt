@@ -1,0 +1,11 @@
+TODO:
+- fetch metadata from archive.org
+- render actual cover art on book
+
+
+DONE:
+- fix bad faces on BookPage instances
+- fix vertical texture flipping on pages
+- create spine texture with title text
+- better layout for title / author text
+- double-sided shader for page
