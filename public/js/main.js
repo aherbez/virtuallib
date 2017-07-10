@@ -1,7 +1,7 @@
 var scene, camera, renderer;
 var book;
 
-let bookOpen = 0; // Math.PI/2;
+let bookOpen = 0;
 let bookProgress = 0.5;
 let animation = true;
 
@@ -46,9 +46,9 @@ function init() {
 		book.mesh.rotation.x = Math.PI/2;
 		book.mesh.rotation.y = 0; // Math.PI/2;		
 		scene.add(book.mesh);
+		book.turnPage(1);
 	}); 
 	
-	// loadBookData();
 };
 
 function getUrl(url, method, data) {
@@ -72,26 +72,6 @@ function getUrl(url, method, data) {
 	});
 }
 
-function loadBookData() {
-	
-	const url = 'http://openlibrary.org/api/books?bibkeys=ISBN:0201558025,LCCN:93005405';
-
-	getUrl(url,'GET').then((result) => {
-		console.log(result);
-	})
-
-	/*
-	let p = new Promise((resolve, reject) => {
-		setTimeout(function() {
-			resolve('Success!');
-		}, 250);
-	});
-
-	p.then((successMessage) => {
-		alert('yay ' + successMessage);
-	})
-	*/
-};
 
 function updateInput(ev) {
 	// console.log(ev);
@@ -127,7 +107,7 @@ function updateInput(ev) {
 
 function render() {
 
-	const d = clock.getDelta();
+	const delta = clock.getDelta();
 
 	if (book.isDoneLoading()) {
 
@@ -137,22 +117,8 @@ function render() {
 
 		book.setOpen(bookOpen);
 		book.setProgress(bookProgress);
-		book.update(d);		
+		book.update(delta);		
 		
-		/*
-		book.mesh.rotation.x = Math.PI/2;
-		book.mesh.rotation.y = 0; // Math.PI/2;
-		// book.mesh.rotation.z = 0; // Math.PI/2;
-
-		book.setOpen(bookOpen);
-		book.setProgress(bookProgress);
-
-		if (book) {
-			animationCount += clock.getDelta();
-			book.setPageFlip(Math.sin(animationCount));
-			book.update();
-		}
-		*/
 	}
 	requestAnimationFrame(render);
 	renderer.render(scene, camera);
