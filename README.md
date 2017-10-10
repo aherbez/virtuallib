@@ -4,11 +4,7 @@
 
 ![book interior](http://www.adrianherbez.net/wp-content/uploads/2017/07/book_open-1024x594.png)
 
-This project renders a 3D book based on data from archive.org. The controls are as follows:
-
-- space: start/stop the book's rotation
-- up/down arrow: open/close the book
-- left/right arrows: flip the pages
+This project renders a 3D book based on data from archive.org. 
 
 Right now, it only loads a single book (The Wizard of Oz), but the plan is to make it into a general reader for archive.org book content.
 
@@ -24,3 +20,9 @@ The client code uses Three.JS in order to create the actual book geometry. Note 
 ## Live demo
 
 To see it in action, head [here](https://fast-crag-65372.herokuapp.com/). Note that it might take a second or two for the heroku instance to spin up.
+
+The controls are as follows:
+
+- space: start/stop the book's rotation
+- up/down arrow: open/close the book
+- left/right arrows: flip the pages
